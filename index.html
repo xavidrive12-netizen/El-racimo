@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>El Racimo — Restaurante | Requena-Utiel (Valencia)</title>
+  <meta name="description" content="El Racimo - Restaurante en Requena-Utiel. Cocina cuidada y vinos de la zona." />
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Sticky header with anchors and mobile menu -->
+  <header class="fixed-header" role="banner" aria-label="Barra principal El Racimo">
+    <div class="header-inner">
+      <div class="brand" aria-hidden="false">
+        <!-- logo image updated to local asset -->
+        <img src="assets/images/logo.jpg" alt="Logotipo El Racimo">
+        <div>
+          <div class="brand-title">El Racimo</div>
+          <div class="brand-sub">Cocina italiana — Requena-Utiel</div>
+        </div>
+      </div>
+
+      <nav class="nav-links" role="navigation" aria-label="Enlaces principales">
+        <a href="#inicio">Inicio</a>
+        <a href="#descripcion">Sobre</a>
+        <a href="#vinos">Vinos</a>
+        <a href="#menu">Menú</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú de navegación">☰</button>
+
+      <div class="contact-pill" aria-hidden="false">
+        <div class="phone">+34 630 85 71 01</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;">
+          <div class="small">restaurante.el.racimo@gmail.com</div>
+          <a href="https://instagram.com/Restaurante_el_Racimo" target="_blank" rel="noopener" class="small">@Restaurante_el_Racimo</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu" role="menu" aria-label="Menú móvil">
+      <a href="#inicio" role="menuitem">Inicio</a>
+      <a href="#descripcion" role="menuitem">Sobre</a>
+      <a href="#vinos" role="menuitem">Vinos</a>
+      <a href="#menu" role="menuitem">Menú</a>
+      <a href="#contacto" role="menuitem">Contacto</a>
+    </div>
+  </header>
+
+  <!-- Remove previous large white gap: padding-top set minimal -->
+  <div style="padding-top: 0;">
+
+    <div class="container">
+
+      <!-- HERO -->
+      <div id="inicio" class="hero-container" role="region" aria-label="Hero El Racimo">
+        <div class="img-wrap" aria-hidden="true">
+          <!-- hero image target for animation (added classes) -->
+          <img class="zoom-reveal hero-spaghetti animated-img" src="assets/images/spaghetti.jpg" alt="espaguetis carbonara">
+        </div>
+
+        <div class="hero-overlay" role="article" aria-labelledby="hero-heading">
+          <div class="badge">Auténtico · Fresco · De la tierra</div>
+          <h1 id="hero-heading">El Racimo — Sabores con raíz en la vid</h1>
+          <p>Restaurante local en la comarca vitivinícola de Requena-Utiel. Trato cercano y cocina cuidada, pensada para maridar con los vinos de la zona.</p>
+        </div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <section id="descripcion" aria-labelledby="desc-title" style="margin-bottom:20px">
+        <h2 id="desc-title" class="section-title" style="font-size:26px">Descripción</h2>
+        <div class="grid-2">
+          <div class="card">
+            <p style="margin:0;color:#444">El Racimo es un restaurante local en Requena-Utiel con clientela fiel. Equipo profesional y trato cercano; platos elaborados para disfrutar junto a los vinos de la comarca.</p>
+          </div>
+
+          <aside style="display:flex;flex-direction:column;gap:12px">
+            <div class="img-wrap" style="height:160px;">
+              <img class="zoom-reveal wine-photo first animated-img" src="assets/images/vino1.jpg" alt="vino DO Utiel-Requena">
+            </div>
+
+            <div class="img-wrap" style="height:120px;">
+              <img class="zoom-reveal wine-photo second animated-img" src="assets/images/vino2.jpg" alt="vino tinto barrica">
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- NUESTRA COCINA -->
+      <section id="cocina" style="margin-bottom:20px">
+        <h2 class="section-title" style="font-size:26px">Nuestra cocina</h2>
+        <div class="card">
+          <p style="margin:0;color:#444">Platos elaborados con producto local y presentación cuidada: antipasti, pastas, risottos y postres de autor, pensados para compartir y maridar.</p>
+        </div>
+      </section>
+
+      <!-- CARTA BREVE DE VINOS -->
+      <section id="vinos" style="margin-bottom:18px">
+        <h2 class="section-title" style="font-size:26px">Carta breve de vinos</h2>
+        <div class="vinos-wrap">
+          <div>
+            <div class="wine-grid" style="margin-bottom:10px">
+              <div class="card">
+                <div style="font-weight:700">Bobal Joven (DO Utiel-Requena)</div>
+                <div class="muted" style="margin-top:6px">Frutos rojos, ligero. Copa 3.50€ · Botella 15€</div>
+              </div>
+              <div class="card">
+                <div style="font-weight:700">Tempranillo crianza</div>
+                <div class="muted" style="margin-top:6px">Suave paso en barrica. Copa 4.50€ · Botella 22€</div>
+              </div>
+              <div class="card">
+                <div style="font-weight:700">Blanco fermentado en barrica</div>
+                <div class="muted" style="margin-top:6px">Cítrico y redondo. Copa 4.00€ · Botella 18€</div>
+              </div>
+              <div class="card">
+                <div style="font-weight:700">Cava local</div>
+                <div class="muted" style="margin-top:6px">Perfecto para celebraciones. Copa 4.50€ · Botella 20€</div>
+              </div>
+            </div>
+
+            <div class="muted" style="font-size:13px">(Carta orientativa — preguntar por las referencias locales disponibles)</div>
+          </div>
+
+          <div class="vinos-img" style="background-image:url('assets/images/vinos-bg.jpg')">
+            <div style="width:100%;height:100%;display:flex;align-items:flex-end;">
+              <div style="width:100%;background:linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.45));padding:14px;color:#fff;border-radius:0 0 12px 12px">
+                <strong>Tierra y vid</strong>
+                <div style="font-size:13px;color:#f1f1f1;margin-top:6px">Maridajes pensados para resaltar los vinos locales.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENÚ -->
+      <section id="menu" style="margin-bottom:18px">
+        <h2 class="section-title" style="font-size:26px">Menú (muestra)</h2>
+        <div class="grid-menu">
+          <div class="dish">
+            <div class="thumb" style="background-image:url('assets/images/spaghetti.jpg')" role="img" aria-label="Spaghetti Carbonara"></div>
+            <div>
+              <div style="font-weight:700">Spaghetti Carbonara <span style="color:var(--accent);margin-left:8px">€12.50</span></div>
+              <div class="muted" style="margin-top:6px">Espaguetis al dente con panceta y pecorino.</div>
+            </div>
+          </div>
+
+          <div class="dish">
+            <div class="thumb" style="background-image:url('assets/images/ensalada.jpg')" role="img" aria-label="Ensalada El Racimo"></div>
+            <div>
+              <div style="font-weight:700">Ensalada El Racimo <span style="color:var(--accent);margin-left:8px">€9.00</span></div>
+              <div class="muted" style="margin-top:6px">Hojas mixtas, granada y queso de la zona.</div>
+            </div>
+          </div>
+
+          <div class="dish">
+            <div class="thumb" style="background-image:url('assets/images/entrecot.jpg')" role="img" aria-label="Entrecot a la brasa"></div>
+            <div>
+              <div style="font-weight:700">Entrecot a la brasa <span style="color:var(--accent);margin-left:8px">€18.50</span></div>
+              <div class="muted" style="margin-top:6px">Chuletón a la brasa con guarnición.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted)">Nota: web informativa. Para reservas y eventos llamad al <a href="tel:+34630857101">+34 630 85 71 01</a>.</div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" style="margin-bottom:28px">
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title" style="font-size:18px">Contacto</h3>
+            <div class="muted">Av. Lamo Espinosa, 1<br>46340 Requena, Valencia</div>
+            <div style="margin-top:8px">
+              Tel: <a href="tel:+34630857101" style="color:var(--accent)">+34 630 85 71 01</a><br>
+              Email: <a href="mailto:restaurante.el.racimo@gmail.com" style="color:var(--accent)">restaurante.el.racimo@gmail.com</a><br>
+              Instagram: <a href="https://instagram.com/Restaurante_el_Racimo" target="_blank" rel="noopener" style="color:var(--accent)">@Restaurante_el_Racimo</a><br>
+              Facebook: <a href="https://facebook.com/Restaurante_el_Racimo" target="_blank" rel="noopener" style="color:var(--accent)">@Restaurante_el_Racimo</a>
+            </div>
+            <div style="margin-top:12px" class="muted">Horario: Lun-Dom 13:00–16:00 · 20:00–23:30</div>
+          </div>
+
+          <div class="card">
+            <strong>Ficha rápida</strong>
+            <div class="muted" style="margin-top:8px">Tipo: Restaurante italiano local<br>Zona: Requena-Utiel (territorio de la vid)<br>Servicio: Cercano y profesional</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div style="font-weight:800;font-size:15px">El Racimo</div>
+        <div style="margin-top:6px">Av. Lamo Espinosa, 1, 46340 Requena — © <span id="year">2025</span> El Racimo</div>
+      </footer>
+
+    </div> <!-- /container -->
+  </div> <!-- /page offset -->
+
+  <!-- floating section nav (kept) -->
+  <nav class="section-nav" aria-label="Navegación de secciones">
+    <a class="nav-item" href="#inicio" data-target="inicio" data-label="Inicio" title="Ir a Inicio" aria-label="Ir a Inicio">🏠</a>
+    <a class="nav-item" href="#descripcion" data-target="descripcion" data-label="Descripción" title="Ir a Descripción" aria-label="Ir a Descripción">ℹ️</a>
+    <a class="nav-item" href="#cocina" data-target="cocina" data-label="Nuestra cocina" title="Ir a Nuestra cocina" aria-label="Ir a Nuestra cocina">🍽️</a>
+    <a class="nav-item" href="#vinos" data-target="vinos" data-label="Vinos" title="Ir a Vinos" aria-label="Ir a Vinos">🍷</a>
+    <a class="nav-item" href="#menu" data-target="menu" data-label="Menú" title="Ir a Menú" aria-label="Ir a Menú">📜</a>
+    <a class="nav-item" href="#contacto" data-target="contacto" data-label="Contacto" title="Ir a Contacto" aria-label="Ir a Contacto">📍</a>
+  </nav>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
