@@ -1,6 +1,6 @@
 (function(){
   // DOM helpers - script is loaded with defer
-  // Hamburger toggle
+  // Hamburger toggle (unchanged)
   const header = document.querySelector('header.fixed-header');
   const btn = document.querySelector('.hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -19,40 +19,65 @@
     });
   }
 
-  // assign transform-origin and subtle stagger for animated images
-  const heroImg = document.querySelector('img.hero-spaghetti');
-  const wineFirst = document.querySelector('img.wine-photo.first');
-  const wineSecond = document.querySelector('img.wine-photo.second');
+  // IMAGES: one-shot un-zoom animation (no loop). Make images crisp and stop animation at the end.
+  // Targets: hero image and the two wine photos (3 images total)
+  const animatedImages = Array.from(document.querySelectorAll('img.zoom-reveal'));
 
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if(heroImg){
-    heroImg.style.transformOrigin = 'center';
-    heroImg.style.animationDelay = '0s';
-  }
-  if(wineFirst){
-    wineFirst.style.transformOrigin = 'center';
-    wineFirst.style.animationDelay = '0.8s';
-  }
-  if(wineSecond){
-    wineSecond.style.transformOrigin = 'center 35%';
-    wineSecond.style.animationDelay = '1.6s';
-  }
+  animatedImages.forEach((img, idx) => {
+    // read per-image data attributes (fall back to defaults)
+    const dataStart = parseFloat(img.dataset.zoomStart || img.getAttribute('data-zoom-start') || 1.18);
+    const dataDuration = img.dataset.zoomDuration || img.getAttribute('data-zoom-duration') || '12s';
+    // set CSS variables on the element for the animation to use
+    img.style.setProperty('--zoom-start', dataStart);
+    img.style.setProperty('--zoom-duration', dataDuration);
+    // If the developer set a per-image transform origin via inline CSS var (e.g. .wine-photo.second),
+    // preserve it; otherwise set sensible defaults/stagger origins slightly.
+    if(!img.style.getPropertyValue('--transform-origin')){
+      const origins = ['center', 'center', 'center 35%']; // keep hero and wine origins predictable
+      img.style.setProperty('--transform-origin', origins[idx] || 'center');
+    }
 
-  // Optional: subtle dynamic origin changes to vary the reveal area (respects reduced motion)
-  if(!prefersReduced){
-    const toggleOrigins = ()=>{
-      // small randomized origin shifts, constrained
-      const origins = ['center', 'left center', 'right center', 'center 25%', 'center 75%'];
-      if(heroImg) heroImg.style.transformOrigin = origins[Math.floor(Math.random()*origins.length)];
-      if(wineFirst) wineFirst.style.transformOrigin = origins[Math.floor(Math.random()*origins.length)];
-      if(wineSecond) wineSecond.style.transformOrigin = ['center 35%','center 30%','center 40%'][Math.floor(Math.random()*3)];
-    };
-    // change every 10s (matches the animation duration range)
-    setInterval(toggleOrigins, 10000);
-  }
+    // Ensure the browser loads the full-resolution image as soon as possible (if not reduced motion)
+    // decoding="sync" and loading="eager" set in HTML help; here we ensure we don't lazy-load unexpectedly.
+    try {
+      img.loading = 'eager';
+    } catch(e){/* ignore on older browsers */ }
 
-  // floating nav active state
+    // If user prefers reduced motion, cancel animation and set final transform
+    if(prefersReduced){
+      img.style.animation = 'none';
+      img.style.transform = 'scale(1)';
+      return;
+    }
+
+    // When the animation ends, keep the final state and remove animation to prevent reflow/looping
+    function onAnimEnd(e){
+      // make sure this event is for transform-related animation
+      // set final transform explicitly to avoid subpixel changes
+      img.style.transform = 'scale(1)';
+      // remove animation property so the element remains static and won't re-trigger
+      img.style.animation = 'none';
+      // tidy up listener
+      img.removeEventListener('animationend', onAnimEnd);
+    }
+
+    // Attach listener before animation starts to avoid race conditions
+    img.addEventListener('animationend', onAnimEnd);
+
+    // Small stagger: start hero immediately, wines slightly delayed — using animationDelay style
+    // delays chosen to feel natural; they do not cause re-triggering.
+    const delays = ['0s','0.8s','1.6s'];
+    img.style.animationDelay = delays[idx] || '0s';
+
+    // Force a reflow/read before the animation starts to ensure CSS variables are applied (safe)
+    // (This also prevents some browsers from optimizing away the initial transform)
+    void img.offsetWidth;
+    // animation is defined in CSS; leaving it to run once (fill-mode: forwards) will stop at end.
+  });
+
+  // floating nav active state (unchanged)
   const nav = document.querySelector('.section-nav');
   if(nav){
     const items = Array.from(nav.querySelectorAll('.nav-item'));

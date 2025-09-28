@@ -66,7 +66,10 @@ header.fixed-header.menu-open .mobile-menu{display:block}
 }
 
 /* =========================
-   HERO
+   HERO & images: new non-looping zoom-reveal (one-shot)
+   - images are shown at their container size with object-fit:cover
+   - animation goes from scale(var(--zoom-start)) -> scale(1) and stops (forwards)
+   - per-image CSS variables set from data-* via JS
    ========================= */
 .hero-container{
   position:relative;
@@ -82,23 +85,32 @@ header.fixed-header.menu-open .mobile-menu{display:block}
 .hero-container .img-wrap{position:absolute;inset:0;overflow:hidden}
 .img-wrap{overflow:hidden;border-radius:12px;position:relative}
 
-/* Zoom reveal base for images */
+/* base rules for zoom-reveal images */
 .zoom-reveal{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
-  transform:scale(1.18);
-  transform-origin:center;
-  animation: zoomReveal 12s ease-in-out infinite;
-  will-change:transform;
+  /* default CSS variables (may be overridden by JS per-image) */
+  --zoom-start: 1.18;
+  --zoom-duration: 12s;
+  --transform-origin: center;
+  transform-origin: var(--transform-origin);
+  transform: scale(var(--zoom-start));
+  will-change: transform;
+  backface-visibility: hidden;
+  /* use the one-shot animation (not infinite) and keep final state */
+  animation: zoomRevealOnce var(--zoom-duration) ease-in-out forwards;
   transition: opacity .25s ease;
+  /* try to favor high-quality resampling */
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* specific hero adjustments */
-.hero-container img.hero-spaghetti{
-  /* initial slightly zoomed state handled by .zoom-reveal */
-}
+/* reduce potential pixelation by avoiding upscaling in CSS:
+   ensure the rendered image area does not exceed intrinsic image size when possible.
+   (You should upload images at least as large as their displayed size.) */
+.img-wrap img { max-width: 100%; height: 100%; width: 100%; display:block; }
 
 /* Dark overlay to improve text contrast */
 .hero-container::before{
@@ -117,21 +129,21 @@ header.fixed-header.menu-open .mobile-menu{display:block}
 
 /* Wine photos (two targeted images) */
 .img-wrap img.animated-img{
-  /* animated-img kept for compatibility */
+  /* kept for compatibility; actual behaviour controlled by .zoom-reveal and JS */
 }
 
-/* different origin for second wine image */
-.wine-photo.second{transform-origin:center 35%;}
+/* different origin for second wine image fallback */
+.wine-photo.second{ --transform-origin: center 35%; }
 
-/* keyframes: start scaled (>1), go to 1, then back */
-@keyframes zoomReveal{
-  0% { transform: scale(1.18); }
-  50% { transform: scale(1.0); }
-  100% { transform: scale(1.18); }
+/* single-run keyframes: start scaled (>1) -> scale(1) and stop (forwards) */
+@keyframes zoomRevealOnce{
+  0% { transform: scale(var(--zoom-start)); }
+  100% { transform: scale(1); }
 }
 
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .zoom-reveal, .animated-img, img.hero-spaghetti { animation: none !important; transform: scale(1.0) !important; }
+  .zoom-reveal, .animated-img, img.hero-spaghetti { animation: none !important; transform: scale(1) !important; }
 }
 
 /* Responsive tuning for hero text */

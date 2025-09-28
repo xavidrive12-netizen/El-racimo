@@ -58,8 +58,19 @@
       <!-- HERO -->
       <div id="inicio" class="hero-container" role="region" aria-label="Hero El Racimo">
         <div class="img-wrap" aria-hidden="true">
-          <!-- hero image target for animation (added classes) -->
-          <img class="zoom-reveal hero-spaghetti animated-img" src="assets/images/spaghetti.jpg" alt="espaguetis carbonara">
+          <!-- hero image target for animation (added classes & data attributes)
+               loading="eager" to prioritise crisp rendering of the hero image.
+               data-zoom-start/data-zoom-duration used by JS to set CSS variables. -->
+          <img
+            class="zoom-reveal hero-spaghetti animated-img"
+            src="assets/images/spaghetti.jpg"
+            alt="espaguetis carbonara"
+            loading="eager"
+            data-zoom-start="1.18"
+            data-zoom-duration="12s"
+            srcset="assets/images/spaghetti.jpg 1x, assets/images/spaghetti.jpg 2x"
+            decoding="sync"
+          >
         </div>
 
         <div class="hero-overlay" role="article" aria-labelledby="hero-heading">
@@ -79,11 +90,31 @@
 
           <aside style="display:flex;flex-direction:column;gap:12px">
             <div class="img-wrap" style="height:160px;">
-              <img class="zoom-reveal wine-photo first animated-img" src="assets/images/vino1.jpg" alt="vino DO Utiel-Requena">
+              <!-- first wine image: eager load and per-image settings -->
+              <img
+                class="zoom-reveal wine-photo first animated-img"
+                src="assets/images/vino1.jpg"
+                alt="vino DO Utiel-Requena"
+                loading="eager"
+                data-zoom-start="1.22"
+                data-zoom-duration="11s"
+                srcset="assets/images/vino1.jpg 1x, assets/images/vino1.jpg 2x"
+                decoding="sync"
+              >
             </div>
 
             <div class="img-wrap" style="height:120px;">
-              <img class="zoom-reveal wine-photo second animated-img" src="assets/images/vino2.jpg" alt="vino tinto barrica">
+              <!-- second wine image -->
+              <img
+                class="zoom-reveal wine-photo second animated-img"
+                src="assets/images/vino2.jpg"
+                alt="vino tinto barrica"
+                loading="eager"
+                data-zoom-start="1.20"
+                data-zoom-duration="12s"
+                srcset="assets/images/vino2.jpg 1x, assets/images/vino2.jpg 2x"
+                decoding="sync"
+              >
             </div>
           </aside>
         </div>
